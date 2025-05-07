@@ -1,22 +1,31 @@
 {
   "name": "@super-brothers/unique-selector",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Given a DOM node, return a unique CSS selector matching only that element",
+  "files": [
+    "lib",
+    "dist",
+    "README.md",
+    "package.json",
+    "package-lock.json"
+  ],
   "main": "./lib/index.js",
   "jsnext:main": "./src/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
+    "build:bundle": "rollup -c",
     "build": "npm run compile",
     "test": "npm run compile && mocha --ignore-leaks --compilers js:babel-register",
-    "compile": "babel -d lib/ src/",
+    "compile": "babel -d lib/ src/  && npm run build:bundle",
     "prepublish": "npm run compile",
     "watch": "npm-scripts-watcher"
   },
   "watch": {
     "src/**/*.js": [
-      "compile"
+      "compile",
+      "build:bundle"
     ]
   },
   "repository": {
@@ -39,6 +48,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@rollup/plugin-babel": "^6.0.4",
     "babel-cli": "^6.1.18",
     "babel-core": "^6.1.18",
     "babel-preset-latest": "^6.24.1",
@@ -53,6 +63,9 @@
     "jsdom": "^8.3.0",
     "mocha": "~1.7.4",
     "mocha-jsdom": "^1.1.0",
-    "mocha-phantomjs": "~1.1.1"
+    "mocha-phantomjs": "~1.1.1",
+    "rollup": "^2.79.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   }
 }

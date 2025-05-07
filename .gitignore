@@ -2,4 +2,5 @@ components
 build
 node_modules
 lib
+dist
 yarn.lock
